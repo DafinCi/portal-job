@@ -3,7 +3,6 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 
 export async function GET(req) {
   try {
-    // 1. Ambil parameter query dari URL (misal: /api/matches?analysisId=123...)
     const { searchParams } = new URL(req.url);
     const analysisId = searchParams.get("analysisId");
 

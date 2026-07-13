@@ -14,22 +14,24 @@ export default function ProfilePage() {
   return (
     <main className="space-y-8">
         <ProfileHero />
-        <ProfileStats />
-        <SkillSection />
-        <div className="grid gap-8 xl:grid-cols-2">
-                <EducationSection />
-                <ExperienceSection />
+        <div className="m-6 space-y-6">
+          <ProfileStats />
+          <SkillSection />
+          <div className="grid gap-8 xl:grid-cols-2">
+              <EducationSection />
+              <ExperienceSection />
+          </div>
+          <div className="grid gap-8 xl:grid-cols-2">
+              <AchievementSection />
+              <SkillProgress />
+          </div>
+          <AIInsight />
+          <div className="grid gap-8 xl:grid-cols-2">
+              <ResumeCard />
+              <SavedJobs />
+          </div>
+          <ActivityTimeline />
         </div>
-        <div className="grid gap-8 xl:grid-cols-2">
-                <AchievementSection />
-                <SkillProgress />
-        </div>
-        <AIInsight />
-        <div className="grid gap-8 xl:grid-cols-2">
-            <ResumeCard />
-            <SavedJobs />
-        </div>
-        <ActivityTimeline />
     </main>
   );
 }

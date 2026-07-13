@@ -38,7 +38,7 @@ export default function HeroCard() {
           text-blue-200
         "
         >
-          🚀 AI Powered Career Platform
+           AI Powered Career Platform
         </span>
 
         <h2 className="mt-6 text-4xl font-bold leading-tight text-white">

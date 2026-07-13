@@ -11,7 +11,7 @@ import {
 
 export default function ProfileHero() {
   return (
-    <section className="overflow-hidden rounded-3xl border border-sidebar-border bg-card">
+    <section className="overflow-hidden border border-sidebar-border bg-card">
 
       {/* Cover */}
       <div className="relative h-56 w-full bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900">

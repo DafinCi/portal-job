@@ -2,21 +2,8 @@ import { createClient } from "@/lib/supabase/client";
 
 const supabase = createClient();
 
-export async function login(email: string, password: string) {
+export async function login(email, password) {
   const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  return data;
-}
-
-export async function register(email: string, password: string) {
-  const { data, error } = await supabase.auth.signUp({
     email,
     password,
   });
@@ -36,10 +23,15 @@ export async function logout() {
   }
 }
 
-export async function getCurrentUser() {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+export async function register(email, password) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+  });
 
-  return user;
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 }

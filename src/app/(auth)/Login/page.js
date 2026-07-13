@@ -30,7 +30,7 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-slate-100 px-4">
-      <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg">
+      <div className="w-full max-w-md rounded-sm bg-white p-8 shadow-lg">
 
         <h1 className="text-3xl font-bold text-center">
           Welcome Back
@@ -52,7 +52,7 @@ export default function LoginPage() {
               placeholder="example@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border rounded-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
@@ -67,13 +67,13 @@ export default function LoginPage() {
               placeholder="********"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border rounded-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
 
           {error && (
-            <div className="rounded-lg bg-red-100 p-3 text-red-600 text-sm">
+            <div className="rounded-sm bg-red-100 p-3 text-red-600 text-sm">
               {error}
             </div>
           )}
@@ -81,7 +81,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-blue-600 py-3 text-white font-semibold hover:bg-blue-700 disabled:opacity-50"
+            className="w-full rounded-sm bg-blue-600 py-3 text-white font-semibold hover:bg-blue-700 disabled:opacity-50"
           >
             {loading ? "Signing In..." : "Login"}
           </button>

@@ -5,12 +5,6 @@ import { analyzeJobMatches } from "@/lib/match-service";
 
 export async function POST(req) {
   try {
-    console.log("URL Supabase:", process.env.NEXT_PUBLIC_SUPABASE_URL);
-    console.log(
-      "Kunci Admin (15 huruf pertama):",
-      process.env.SUPABASE_SERVICE_ROLE_KEY?.substring(0, 15),
-    );
-    // 1. Terima data dari Frontend
     const body = await req.json();
     const { resumeId, rawText, userId } = body;
 
@@ -20,17 +14,11 @@ export async function POST(req) {
         { status: 400 },
       );
     }
-
-    // Ubah status resume jadi 'processing'
     await supabaseAdmin
       .from("resumes")
       .update({ status: "processing" })
       .eq("id", resumeId);
 
-    // ==========================================
-    // TAHAP 1: EKSTRAKSI PROFIL KANDIDAT (LLM CALL 1)
-    // ==========================================
-    // AI mereturn The Big JSON dan array extracted_skills
     const aiCandidateData = await extractCandidateProfile(rawText);
 
     // Simpan hasil The Big JSON ke database
@@ -38,7 +26,7 @@ export async function POST(req) {
       .from("resume_analysis")
       .insert({
         resume_id: resumeId,
-        model_version: "gpt-4o-mini", // atau gemini
+        model_version: "gemini-flash-lite",
         prompt_version: "v1.0",
         candidate_data: aiCandidateData.json_profile,
         extracted_skills: aiCandidateData.extracted_skills,
@@ -109,7 +97,6 @@ export async function POST(req) {
   } catch (error) {
     console.error("API Analyze Error:", error);
 
-    // Fallback: Jika gagal di tengah jalan, set status resume jadi 'failed'
     if (typeof resumeId !== "undefined") {
       await supabaseAdmin
         .from("resumes")

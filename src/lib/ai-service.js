@@ -1,7 +1,5 @@
 import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 
-// Inisialisasi Gemini Client
-// Pastikan GEMINI_API_KEY sudah ada di .env.local
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export async function extractCandidateProfile(rawText) {
@@ -94,7 +92,6 @@ export async function extractCandidateProfile(rawText) {
     required: ["json_profile", "extracted_skills"],
   };
 
-  // 2. Setup Model (Gemini 1.5 Flash)
   const model = genAI.getGenerativeModel({
     model: "gemini-flash-lite-latest",
     generationConfig: {

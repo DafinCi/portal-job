@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@base-ui/react": "^1.6.0",
     "@hookform/resolvers": "^5.4.0",
     "@supabase/ssr": "^0.12.0",
@@ -16,7 +17,13 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.24.0",
+=======
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/ssr": "^0.12.1",
+    "@supabase/supabase-js": "^2.110.3",
+>>>>>>> b8991ab3c7507900d57c85197538601365b4db63
     "next": "16.2.10",
+    "pdf-parse": "^2.4.5",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-hook-form": "^7.81.0",

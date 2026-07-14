@@ -1,24 +1,23 @@
-import { Poppins } from "next/font/google";
+import { Work_Sans, Inter } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
+const inter = Inter({
   subsets: ["latin"],
-  weight: [
-    "300",
-    "400",
-    "500",
-    "600",
-    "700",
-  ],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background">
-        {children}
-      </body>
+    <html lang="en" className={`${inter.className} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-background">{children}</body>
     </html>
   );
 }

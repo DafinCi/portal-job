@@ -1,18 +1,37 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
-// Import dengan gaya v2
 import { PDFParse } from "pdf-parse";
+import { createClient } from "@/lib/supabase/server";
 
 export async function POST(req) {
   try {
+    // 🔥 AUTENTIKASI: Ambil user dari cookies (Tidak bisa dimanipulasi)
+    const supabaseAuth = await createClient();
+    const {
+      data: { user },
+      error: authError,
+    } = await supabaseAuth.auth.getUser();
+
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: "Unauthorized! Sesi telah habis, silakan login kembali." },
+        { status: 401 },
+      );
+    }
+
+    const userId = user.id; // 🔥 Dapatkan ID asli dari server
+
+    // ---------------------------------------------------------
+
     const formData = await req.formData();
     const file = formData.get("file");
-    const userId = formData.get("userId");
+    // const userId = formData.get("userId"); // ❌ HAPUS BARIS INI
 
     // --- LAPIS 1 & 2: Validasi Dasar ---
-    if (!file || !userId) {
+    if (!file) {
+      // Hapus validasi userId karena sudah divalidasi di atas
       return NextResponse.json(
-        { error: "File PDF dan userId wajib dikirim!" },
+        { error: "File PDF wajib dikirim!" },
         { status: 400 },
       );
     }
@@ -28,13 +47,10 @@ export async function POST(req) {
     const buffer = Buffer.from(arrayBuffer);
 
     let rawText = "";
-    let parser; // Deklarasi di luar try agar bisa diakses di blok finally
+    let parser;
 
     try {
-      // Inisialisasi class PDFParse dengan buffer
       parser = new PDFParse({ data: buffer });
-
-      // Ambil teksnya
       const result = await parser.getText();
       rawText = result.text.trim();
     } catch (parseError) {
@@ -44,7 +60,6 @@ export async function POST(req) {
         { status: 400 },
       );
     } finally {
-      // WAJIB: Bebaskan memori server seperti instruksi di doc v2
       if (parser) {
         await parser.destroy();
       }
@@ -64,7 +79,7 @@ export async function POST(req) {
     // --- LAPIS 5: Upload ke Supabase Storage ---
     const timestamp = Date.now();
     const safeFileName = file.name.replace(/[^a-zA-Z0-9.\-_]/g, "_");
-    const storagePath = `${userId}/${timestamp}_${safeFileName}`;
+    const storagePath = `${userId}/${timestamp}_${safeFileName}`; // Tetap aman pakai userId dari sesi
 
     const { data: storageData, error: storageError } =
       await supabaseAdmin.storage.from("resumes").upload(storagePath, buffer, {

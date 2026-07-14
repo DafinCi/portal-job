@@ -2,11 +2,26 @@ import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
 import { extractCandidateProfile } from "@/lib/ai-service";
 import { analyzeJobMatches } from "@/lib/match-service";
+import { createClient } from "@/lib/supabase/server";
 
 export async function POST(req) {
   try {
+    // 🔥 AUTENTIKASI: Cegah anonymous spamming Gemini API
+    const supabaseAuth = await createClient();
+    const {
+      data: { user },
+      error: authError,
+    } = await supabaseAuth.auth.getUser();
+
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: "Unauthorized! Sesi telah habis, silakan login kembali." },
+        { status: 401 },
+      );
+    }
+
     const body = await req.json();
-    const { resumeId, rawText, userId } = body;
+    const { resumeId, rawText } = body;
 
     if (!resumeId || !rawText) {
       return NextResponse.json(
@@ -14,6 +29,7 @@ export async function POST(req) {
         { status: 400 },
       );
     }
+
     await supabaseAdmin
       .from("resumes")
       .update({ status: "processing" })

@@ -5,32 +5,24 @@ import {
   Database,
   BrainCircuit,
 } from "lucide-react";
+import { CardTitle } from "../ui/card";
 
 const skills = [
-
   "React",
-
   "Next.js",
-
   "Tailwind CSS",
-
   "Supabase",
-
   "Node.js",
-
   "Express",
-
   "PostgreSQL",
-
   "Docker",
-
 ];
 
 export default function SkillSection() {
   return (
     <section
       className="
-      rounded-2xl
+      rounded-[8px]
       border
       border-sidebar-border
       bg-card
@@ -70,8 +62,7 @@ export default function SkillSection() {
             duration-300
             hover:border-primary
             hover:bg-primary/10
-          "
-          >
+          ">
             <Code2
               size={16}
               className="text-primary"
@@ -81,7 +72,7 @@ export default function SkillSection() {
         ))}
       </div>
 
-      <div className="mt-10 rounded-2xl bg-secondary p-6">
+      <CardTitle>
         <div className="flex items-center gap-3">
           <Database
             className="text-blue-500"
@@ -103,7 +94,7 @@ export default function SkillSection() {
           with modern JavaScript frameworks and responsive UI
           development.
         </p>
-      </div>
+      </CardTitle>
     </section>
   );
 }

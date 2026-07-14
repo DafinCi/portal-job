@@ -1,5 +1,6 @@
 "use client";
 
+import { CardContent } from "@/components/ui/card";
 const stats = [
   {
     title: "Resume",
@@ -34,19 +35,11 @@ export default function ProfileStats() {
     "
     >
       {stats.map((item) => (
-        <div
+        <CardContent
           key={item.title}
           className="
-          rounded-2xl
-          border
-          border-sidebar-border
-          bg-card
           p-6
           text-center
-          transition-all
-          duration-300
-          hover:-translate-y-1
-          hover:border-primary
         "
         >
           <h2 className="text-4xl font-bold">
@@ -56,7 +49,7 @@ export default function ProfileStats() {
           <p className="mt-2 text-sm text-muted-foreground">
             {item.title}
           </p>
-        </div>
+        </CardContent>
       ))}
     </section>
   );

@@ -31,7 +31,7 @@ export default function SidebarHeader({ collapsed }) {
           <div className="overflow-hidden">
 
             <h1 className="truncate text-lg font-bold text-sidebar-foreground">
-              JobMatch AI
+              Kerja In
             </h1>
 
             <p className="text-sm text-muted-foreground overflow-x-hidden">

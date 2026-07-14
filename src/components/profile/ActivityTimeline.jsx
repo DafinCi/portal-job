@@ -32,7 +32,7 @@ const activities=[
 ];
 export default function ActivityTimeline(){
     return(
-    <section className="rounded-2xl border border-sidebar-border bg-card p-8">
+    <section className="rounded-[8px] border border-sidebar-border bg-card p-8">
         <h2 className="text-2xl font-bold">
             Recent Activity
         </h2>

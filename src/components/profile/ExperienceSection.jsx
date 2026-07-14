@@ -27,9 +27,9 @@ const experiences = [
 
 export default function ExperienceSection() {
     return (
-        <section className="rounded-2xl border border-sidebar-border bg-card p-8">
+        <section className="rounded-[8px] border border-sidebar-border bg-card p-8">
             <div className="mb-8 flex items-center gap-3">
-                <div className="rounded-xl bg-primary p-3 text-primary-foreground">
+                <div className="rounded-[8px] bg-primary p-3 text-primary-foreground">
                     <BriefcaseBusiness size={22} />
                 </div>
 
@@ -49,7 +49,7 @@ export default function ExperienceSection() {
                     <div
                         key={index}
                         className="
-                        rounded-2xl
+                        rounded-[8px]
                         border
                         border-sidebar-border
                         bg-secondary

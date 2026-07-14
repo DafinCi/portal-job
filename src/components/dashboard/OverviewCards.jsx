@@ -1,5 +1,6 @@
 "use client";
 
+import { CardContent } from "@/components/ui/card";
 import {
   BriefcaseBusiness,
   Building2,
@@ -12,28 +13,28 @@ const stats = [
     title: "Available Jobs",
     value: "1,280",
     icon: BriefcaseBusiness,
-    color: "bg-blue-600",
+    color: "bg-primary",
     growth: "+12%",
   },
   {
     title: "AI Match",
     value: "92%",
     icon: Sparkles,
-    color: "bg-violet-600",
+    color: "bg-primary",
     growth: "+5%",
   },
   {
     title: "Resume Status",
     value: "Ready",
     icon: FileText,
-    color: "bg-emerald-600",
+    color: "bg-primary",
     growth: "Uploaded",
   },
   {
     title: "Companies",
     value: "50+",
     icon: Building2,
-    color: "bg-orange-500",
+    color: "bg-primary",
     growth: "+8",
   },
 ];
@@ -47,21 +48,11 @@ export default function OverviewCards() {
         const Icon = item.icon;
 
         return (
-          <div
+          <CardContent
             key={index}
             className="
               group
-              rounded-2xl
-              border
-              border-slate-700
-              bg-slate-900
               p-6
-              transition-all
-              duration-300
-              hover:-translate-y-1
-              hover:border-blue-500
-              hover:shadow-xl
-              hover:shadow-blue-500/10
             "
           >
 
@@ -87,7 +78,7 @@ export default function OverviewCards() {
                   w-14
                   items-center
                   justify-center
-                  rounded-2xl
+                  rounded-[8px]
                 `}
               >
                 <Icon
@@ -117,10 +108,8 @@ export default function OverviewCards() {
               >
                 {item.growth}
               </span>
-
             </div>
-
-          </div>
+          </CardContent>
         );
       })}
     </div>

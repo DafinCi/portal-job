@@ -46,6 +46,9 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-primary: var(--primary);
+  --color-gradasi: var(--gradasi);
 }
 
 :root {
@@ -54,6 +57,8 @@
   ========================== */
   --background: oklch(0.145 0.01 255);
   --foreground: oklch(0.975 0.005 255);
+
+  --gradasi: bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900;
 
   /* ==========================
      Surface
@@ -67,7 +72,7 @@
   /* ==========================
      Brand
   ========================== */
-  --primary: oklch(0.63 0.19 275);
+  --primary: #1d4ed8;
   --primary-foreground: oklch(0.985 0.003 255);
 
   /* ==========================

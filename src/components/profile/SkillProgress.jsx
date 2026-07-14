@@ -31,7 +31,7 @@ const skills = [
 
 export default function SkillProgress() {
   return (
-    <section className="rounded-2xl border border-sidebar-border bg-card p-8">
+    <section className="rounded-[8px] border border-sidebar-border bg-card p-8">
       <h2 className="text-2xl font-bold">
         Skill Level
       </h2>

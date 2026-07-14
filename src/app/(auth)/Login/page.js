@@ -13,14 +13,13 @@ export default function LoginPage() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     setLoading(true);
     setError("");
 
     try {
       await login(email, password);
-
       router.push("/dashboard");
+      router.refresh();
     } catch (err) {
       setError(err.message);
     } finally {
@@ -29,75 +28,69 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-slate-100 px-4">
-      <div className="w-full max-w-md rounded-sm bg-white p-8 shadow-lg">
-
-        <h1 className="text-3xl font-bold text-center">
+    <main className="min-h-screen flex items-center justify-center bg-slate-950 px-4 text-slate-100">
+      <div className="w-full max-w-md rounded-lg bg-slate-900 p-8 border border-slate-800 shadow-2xl">
+        <h1 className="text-3xl font-bold text-center text-white tracking-tight">
           Welcome Back
         </h1>
 
-        <p className="text-center text-gray-500 mt-2 mb-8">
-          Login to your account
+        <p className="text-center text-slate-400 mt-2 mb-8 text-sm">
+          Login to your developer account
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-
           <div>
-            <label className="block mb-2 font-medium">
-              Email
+            <label className="block mb-2 text-sm font-semibold text-slate-300">
+              Email Address
             </label>
-
             <input
               type="email"
-              placeholder="example@email.com"
+              placeholder="name@company.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border rounded-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm"
               required
             />
           </div>
 
           <div>
-            <label className="block mb-2 font-medium">
+            <label className="block mb-2 text-sm font-semibold text-slate-300">
               Password
             </label>
-
             <input
               type="password"
-              placeholder="********"
+              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border rounded-sm px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-sm"
               required
             />
           </div>
 
           {error && (
-            <div className="rounded-sm bg-red-100 p-3 text-red-600 text-sm">
-              {error}
+            <div className="rounded-md bg-red-950/50 border border-red-900/80 p-3.5 text-red-400 text-xs font-medium">
+              ⚠️ {error}
             </div>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-sm bg-blue-600 py-3 text-white font-semibold hover:bg-blue-700 disabled:opacity-50"
+            className="w-full rounded-md bg-blue-600 py-3 text-white font-semibold hover:bg-blue-500 active:bg-blue-700 disabled:opacity-50 transition-all text-sm shadow-lg shadow-blue-900/20"
           >
-            {loading ? "Signing In..." : "Login"}
+            {loading ? "Signing In..." : "Login to Dashboard"}
           </button>
-
         </form>
 
-        <p className="mt-6 text-center text-sm">
-          {" Don't have an account? "}
+        <p className="mt-6 text-center text-sm text-slate-400">
+          {"Don't have an account? "}
           <button
             onClick={() => router.push("/register")}
-            className="text-blue-600 font-semibold hover:underline"
+            className="text-blue-400 font-semibold hover:text-blue-300 hover:underline transition-all"
           >
             Register
           </button>
         </p>
-
       </div>
     </main>
   );

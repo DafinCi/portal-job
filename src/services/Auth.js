@@ -1,18 +1,41 @@
-import { createClient } from "@/lib/supabase/client";
-
-const supabase = createClient();
+import { supabase } from "@/lib/supabase/client";
 
 export async function login(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
+  const response = await fetch("/api/auth/signin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
   });
 
-  if (error) {
-    throw new Error(error.message);
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      result.error || "Gagal login. Silakan cek kembali akun Anda.",
+    );
   }
 
-  return data;
+  return result;
+}
+
+export async function register(email, password) {
+  const response = await fetch("/api/auth/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  });
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.error || "Gagal registrasi.");
+  }
+
+  return result;
 }
 
 export async function logout() {
@@ -21,17 +44,10 @@ export async function logout() {
   if (error) {
     throw new Error(error.message);
   }
-}
 
-export async function register(email, password) {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-  });
-
-  if (error) {
-    throw new Error(error.message);
-  }
-
-  return data;
+  // Force clean cookies darurat jika diperlukan
+  document.cookie =
+    "sb-access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  document.cookie =
+    "sb-refresh-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }

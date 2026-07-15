@@ -50,9 +50,9 @@ export default function SavedJobs(){
 
     return(
 
-        <section className="rounded-2xl border border-sidebar-border bg-card p-8">
+        <section className="rounded-[8px] border border-sidebar-border bg-card p-8">
             <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-primary p-3 text-primary-foreground">
+                <div className="rounded-[8px] bg-primary p-3 text-primary-foreground">
                     <BriefcaseBusiness size={22}/>
                 </div>
 
@@ -72,7 +72,7 @@ export default function SavedJobs(){
 
                 <div
                 key={index}
-                className="rounded-2xl border border-sidebar-border bg-secondary p-5 transition hover:border-primary"
+                className="rounded-[8px] border border-sidebar-border bg-secondary p-5 transition hover:border-primary"
                 >
 
                     <div className="flex items-center justify-between">

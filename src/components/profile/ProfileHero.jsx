@@ -14,7 +14,7 @@ export default function ProfileHero() {
     <section className="overflow-hidden border border-sidebar-border bg-card">
 
       {/* Cover */}
-      <div className="relative h-56 w-full bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900">
+      <div className="relative h-56 w-full bg-primary">
         <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
       </div>
 
@@ -87,7 +87,7 @@ export default function ProfileHero() {
               flex
               items-center
               gap-2
-              rounded-xl
+              rounded-[8px]
               bg-primary
               px-5
               py-3
@@ -105,7 +105,7 @@ export default function ProfileHero() {
               flex
               items-center
               gap-2
-              rounded-xl
+              rounded-[8px]
               border
               border-sidebar-border
               bg-secondary

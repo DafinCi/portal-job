@@ -44,7 +44,7 @@ export default function TestUploadPage() {
 
       <form
         onSubmit={handleUpload}
-        className="space-y-4 border p-5 rounded-lg bg-gray-50"
+        className="space-y-4 border p-5 rounded-[8px] bg-gray-50"
       >
         <div>
           <input
@@ -66,7 +66,7 @@ export default function TestUploadPage() {
       {result && (
         <div className="mt-8">
           <h2 className="font-bold text-lg mb-2">Hasil dari Backend:</h2>
-          <pre className="bg-slate-900 text-green-400 p-4 rounded-lg overflow-auto text-sm ">
+          <pre className="bg-slate-900 text-green-400 p-4 rounded-[8px] overflow-auto text-sm ">
             {JSON.stringify(result, null, 2)}
           </pre>
         </div>

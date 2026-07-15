@@ -9,7 +9,17 @@ import {
 export default function AIInsight() {
 
   return (
-    <section className="rounded-2xl border border-sidebar-border bg-gradient-to-br from-primary/15 to-card p-8">
+    <section
+      className="
+      rounded-[8px]
+      border
+      border-sidebar-border
+      bg-gradient-to-br
+      from-primary/15
+      to-card
+      p-8
+    "
+    >
       <div className="flex items-center gap-3">
         <BrainCircuit
           className="text-primary"
@@ -84,7 +94,15 @@ export default function AIInsight() {
           </div>
         </div>
 
-        <div className="rounded-xl border border-primary bg-card p-5">
+        <div
+          className="
+          rounded-[8px]
+          border
+          border-primary
+          bg-card
+          p-5
+        "
+        >
           <div className="flex items-center gap-2">
             <ArrowUpRight
               className="text-primary"

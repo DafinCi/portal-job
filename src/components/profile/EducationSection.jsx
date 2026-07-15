@@ -6,6 +6,7 @@ import {
     School,
     Award,
 } from "lucide-react";
+import { CardTitle } from "../ui/card";
 
 const education = [
     {
@@ -24,9 +25,9 @@ const education = [
 
 export default function EducationSection() {
     return (
-        <section className="rounded-2xl border border-sidebar-border bg-card p-8">
+        <section className="rounded-[8px] border border-sidebar-border bg-card p-8">
             <div className="mb-8 flex items-center gap-3">
-                <div className="rounded-xl bg-primary p-3 text-primary-foreground">
+                <div className="rounded-[8px] bg-primary p-3 text-primary-foreground">
                     <GraduationCap size={22} />
                 </div>
 
@@ -58,14 +59,15 @@ export default function EducationSection() {
                             bg-primary
                         "
                         />
-                        <div
+                        <CardTitle
                             className="
-                            rounded-2xl
+                            rounded-[8px]
                             border
                             border-sidebar-border
                             bg-secondary
                             p-6
-                            transition
+                            transition-all
+                            duration-300
                             hover:border-primary
                         "
                         >
@@ -91,7 +93,7 @@ export default function EducationSection() {
                                     {item.gpa}
                                 </div>
                             </div>
-                        </div>
+                        </CardTitle>
                     </div>
                 ))}
             </div>

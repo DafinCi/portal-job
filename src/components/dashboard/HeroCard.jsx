@@ -12,11 +12,11 @@ export default function HeroCard() {
       className="
       relative
       overflow-hidden
-      rounded-3xl
+      rounded-[8px]
       border
       border-slate-700
       bg-gradient-to-r
-      from-blue-700
+      from-primary
       via-indigo-700
       to-slate-900
       p-8
@@ -60,7 +60,7 @@ export default function HeroCard() {
               flex
               items-center
               gap-2
-              rounded-xl
+              rounded-[8px]
               bg-white
               px-6
               py-3
@@ -81,7 +81,7 @@ export default function HeroCard() {
               flex
               items-center
               gap-2
-              rounded-xl
+              rounded-[8px]
               border
               border-white/20
               bg-white/10

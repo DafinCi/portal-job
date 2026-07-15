@@ -41,7 +41,7 @@ function CardTitle({
   return (
     <div
       data-slot="card-title"
-      className={cn("font-heading text-base font-medium", className)}
+      className={cn("mt-10 rounded-[8px] bg-secondary p-6", className)}
       {...props} />
   );
 }
@@ -80,7 +80,8 @@ function CardContent({
   return (
     <div
       data-slot="card-content"
-      className={cn("px-(--card-spacing)", className)}
+      className={cn("relative  rounded-[8px] border border-slate-700 bg-card p-6 hover:-translate-y-1 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300",
+         className )}
       {...props} />
   );
 }

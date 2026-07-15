@@ -41,9 +41,9 @@ const achievements = [
 
 export default function AchievementSection() {
   return (
-    <section className="rounded-2xl border border-sidebar-border bg-card p-8">
+    <section className="rounded-[8px] border border-sidebar-border bg-card p-8">
       <div className="mb-8 flex items-center gap-3">
-        <div className="rounded-xl bg-primary p-3 text-primary-foreground">
+        <div className="rounded-[8px] bg-primary p-3 text-primary-foreground">
           <Trophy size={22} />
         </div>
         <div>
@@ -67,7 +67,7 @@ export default function AchievementSection() {
                 flex
                 items-center
                 justify-between
-                rounded-2xl
+                rounded-[8px]
                 border
                 border-sidebar-border
                 bg-secondary
@@ -79,7 +79,7 @@ export default function AchievementSection() {
 
               <div className="flex items-center gap-4">
 
-                <div className="rounded-xl bg-card p-3">
+                <div className="rounded-[8px] bg-card p-3">
                   <Icon className={item.color} size={24} />
                 </div>
 

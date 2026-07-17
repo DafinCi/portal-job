@@ -1,12 +1,18 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase/admin";
-import { extractCandidateProfile } from "@/lib/ai-service";
-import { analyzeJobMatches } from "@/lib/match-service";
 import { createClient } from "@/lib/supabase/server";
+import { extractCandidateProfile } from "@/lib/gemini/profile-extractor";
+import { analyzeJobMatches } from "@/lib/gemini/job-matcher";
+
+const MODEL_NAME = process.env.MODEL_NAME || "gemini-flash-lite";
+const PROMPT_VERSION = "v1.0";
+const TOP_JOB_LIMIT = 10;
 
 export async function POST(req) {
+  let resumeId = null;
+
   try {
-    // 🔥 AUTENTIKASI: Cegah anonymous spamming Gemini API
+    // 1. AUTENTIKASI
     const supabaseAuth = await createClient();
     const {
       data: { user },
@@ -15,13 +21,15 @@ export async function POST(req) {
 
     if (authError || !user) {
       return NextResponse.json(
-        { error: "Unauthorized! Sesi telah habis, silakan login kembali." },
+        { error: "Unauthorized! Silakan login kembali." },
         { status: 401 },
       );
     }
 
+    // 2. VALIDASI REQUEST
     const body = await req.json();
-    const { resumeId, rawText } = body;
+    resumeId = body.resumeId;
+    const { rawText } = body;
 
     if (!resumeId || !rawText) {
       return NextResponse.json(
@@ -30,20 +38,22 @@ export async function POST(req) {
       );
     }
 
+    // 3. UPDATE STATUS INITIAL (PROCESSING)
     await supabaseAdmin
       .from("resumes")
       .update({ status: "processing" })
       .eq("id", resumeId);
 
+    // 4. DEEP LLM EXTRACTION (CALL 1)
     const aiCandidateData = await extractCandidateProfile(rawText);
 
-    // Simpan hasil The Big JSON ke database
+    // 5. INSERT PROFILE ANALYSIS
     const { data: analysisData, error: analysisError } = await supabaseAdmin
       .from("resume_analysis")
       .insert({
         resume_id: resumeId,
-        model_version: "gemini-flash-lite",
-        prompt_version: "v1.0",
+        model_version: MODEL_NAME,
+        prompt_version: PROMPT_VERSION,
         candidate_data: aiCandidateData.json_profile,
         extracted_skills: aiCandidateData.extracted_skills,
       })
@@ -53,10 +63,7 @@ export async function POST(req) {
     if (analysisError) throw analysisError;
     const analysisId = analysisData.id;
 
-    // ==========================================
-    // TAHAP 2: PRE-FILTERING JOBS (FAST POSTGRES QUERY)
-    // ==========================================
-    // Ambil top 10 jobs yang punya irisan skill dengan kandidat menggunakan && (overlap)
+    // 6. PRE-FILTERING JOBS
     const { data: topJobs, error: jobsError } = await supabaseAdmin
       .from("jobs")
       .select("id, title, description, requirements, company_id")
@@ -64,22 +71,18 @@ export async function POST(req) {
         "requirements",
         "ov",
         `{${aiCandidateData.extracted_skills.join(",")}}`,
-      ) // ov = overlap
-      .limit(10);
+      )
+      .limit(TOP_JOB_LIMIT);
 
     if (jobsError) throw jobsError;
 
-    // ==========================================
-    // TAHAP 3: DEEP AI MATCHING (LLM CALL 2)
-    // ==========================================
+    // 7. DEEP AI MATCHING (LLM CALL 2)
     if (topJobs && topJobs.length > 0) {
-      // AI membandingkan profil kandidat dengan 10 lowongan yang terfilter
       const matchResults = await analyzeJobMatches(
         aiCandidateData.json_profile,
         topJobs,
       );
 
-      // Siapkan array data untuk di-insert sekaligus (bulk insert) ke job_matches
       const matchInsertData = matchResults.map((match) => ({
         analysis_id: analysisId,
         job_id: match.job_id,
@@ -88,32 +91,26 @@ export async function POST(req) {
         missing_skills: match.missing_skills,
       }));
 
-      // Simpan hasil matching ke database
-      await supabaseAdmin.from("job_matches").insert(matchInsertData);
+      const { error: matchInsertError } = await supabaseAdmin
+        .from("job_matches")
+        .insert(matchInsertData);
+      if (matchInsertError) throw matchInsertError;
     }
 
-    // ==========================================
-    // TAHAP 4: SELESAI
-    // ==========================================
-    // Update status resume jadi 'completed'
+    // 8. UPDATE STATUS FINAL (COMPLETED)
     await supabaseAdmin
       .from("resumes")
       .update({ status: "completed" })
       .eq("id", resumeId);
 
-    // Kirim response sukses ke frontend
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Analisis selesai",
-        analysisId: analysisId,
-      },
-      { status: 200 },
-    );
+    return NextResponse.json({
+      success: true,
+      message: "Analisis selesai",
+      analysisId,
+    });
   } catch (error) {
     console.error("API Analyze Error:", error);
-
-    if (typeof resumeId !== "undefined") {
+    if (resumeId) {
       await supabaseAdmin
         .from("resumes")
         .update({ status: "failed" })

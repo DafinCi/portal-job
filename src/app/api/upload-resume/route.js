@@ -25,9 +25,6 @@ export async function POST(req) {
 
     const formData = await req.formData();
     const file = formData.get("file");
-    // const userId = formData.get("userId"); // ❌ HAPUS BARIS INI
-
-    // --- LAPIS 1 & 2: Validasi Dasar ---
     if (!file) {
       // Hapus validasi userId karena sudah divalidasi di atas
       return NextResponse.json(

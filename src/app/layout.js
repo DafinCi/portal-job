@@ -1,4 +1,4 @@
-import { Work_Sans, Inter } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,17 +7,28 @@ const inter = Inter({
   display: "swap",
 });
 
-const workSans = Work_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-heading",
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
+export const metadata = {
+  title: "Finder | AI Career Intelligence",
+  description: "Understand your career before applying.",
+};
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background">{children}</body>
+    <html
+      lang="en"
+      className={`dark ${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      style={{ colorScheme: "dark" }} // Mencegah flash putih bawaan browser
+    >
+      <body className="min-h-full flex flex-col bg-background font-body text-foreground">
+        {children}
+      </body>
     </html>
   );
 }

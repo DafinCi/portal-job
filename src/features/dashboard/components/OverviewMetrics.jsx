@@ -34,7 +34,7 @@ export default function OverviewMetrics({ metrics }) {
         return (
           <div
             key={i}
-            className="border border-border bg-card rounded-[6px] p-5 flex flex-col justify-between space-y-4 hover:border-muted/50 transition-colors duration-150"
+            className="border border-border bg-card/50 rounded-[6px] p-5 flex flex-col justify-between space-y-4 hover:border-muted/50 transition-colors duration-150"
           >
             <div className="flex items-center justify-between">
               <span className="text-[14px] font-sans font-medium text-muted-foreground uppercase tracking-wider">

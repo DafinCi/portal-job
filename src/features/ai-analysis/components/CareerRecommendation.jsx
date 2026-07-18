@@ -14,7 +14,7 @@ export default function CareerRecommendation({ jobMatches }) {
 
   return (
     <section className="mt-8">
-      <div className="border border-border bg-card rounded-[6px] overflow-hidden">
+      <div className="border border-border bg-card/50 rounded-[6px] overflow-hidden">
         {/* Top Section: Recommended Roles */}
         <div className="p-6 border-b border-border">
           <div className="flex items-center gap-2 mb-4 text-foreground">

@@ -13,7 +13,7 @@ export default function DashboardSkeleton() {
       </div>
 
       {/* Hero Skeleton */}
-      <div className="h-60 border border-border bg-card rounded-[6px] p-8 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="h-60 border border-border bg-card/50 rounded-[6px] p-8 flex flex-col md:flex-row items-center justify-between gap-8">
         <div className="flex-1 space-y-4 w-full">
           <div className="h-6 w-32 bg-secondary rounded-[6px]" />
           <div className="h-8 w-80 bg-secondary rounded-[6px]" />
@@ -31,7 +31,7 @@ export default function DashboardSkeleton() {
         {[1, 2, 3].map((i) => (
           <div
             key={i}
-            className="h-36 border border-border bg-card rounded-[6px] p-5 flex flex-col justify-between"
+            className="h-36 border border-border bg-card/50 rounded-[6px] p-5 flex flex-col justify-between"
           >
             <div className="flex justify-between items-center">
               <div className="h-4 w-28 bg-secondary rounded-[6px]" />
@@ -46,7 +46,7 @@ export default function DashboardSkeleton() {
       </div>
 
       {/* Insights Skeleton */}
-      <div className="h-52 border border-border bg-card rounded-[6px] p-8 space-y-6">
+      <div className="h-52 border border-border bg-card/50 rounded-[6px] p-8 space-y-6">
         <div className="h-6 w-48 bg-secondary rounded-[6px]" />
         <div className="space-y-3">
           <div className="h-4 w-full bg-secondary/60 rounded-[6px]" />

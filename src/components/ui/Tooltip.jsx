@@ -2,25 +2,20 @@
 
 import { useState } from "react";
 
-export default function Tooltip({
-    children,
-    text,
-}) {
+export default function Tooltip({ children, text }) {
+  const [show, setShow] = useState(false);
 
-    const [show, setShow] = useState(false);
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
+    >
+      {children}
 
-    return (
-
+      {show && (
         <div
-            className="relative"
-            onMouseEnter={() => setShow(true)}
-            onMouseLeave={() => setShow(false)}
-        >
-            {children}
-
-            {show && (
-                <div
-                    className="
+          className="
                         absolute
                         left-full
                         top-1/2
@@ -28,7 +23,7 @@ export default function Tooltip({
                         -translate-y-1/2
                         whitespace-nowrap
                         rounded-sm
-                        bg-card
+                        bg-card/50
                         border
                         border-border
                         px-3
@@ -37,10 +32,10 @@ export default function Tooltip({
                         shadow-xl
                         z-50
                     "
-                >
-                    {text}
-                </div>
-            )}
+        >
+          {text}
         </div>
-    );
+      )}
+    </div>
+  );
 }

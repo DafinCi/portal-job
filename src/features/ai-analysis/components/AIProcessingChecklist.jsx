@@ -62,7 +62,7 @@ export default function AIProcessingChecklist({ currentStep }) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto border border-border bg-card rounded-[6px] overflow-hidden transition-all duration-200">
+    <div className="w-full max-w-md mx-auto border border-border bg-card/50 rounded-[6px] overflow-hidden transition-all duration-200">
       <div className="w-full `h-0.75` bg-secondary">
         <div
           className="h-full bg-primary transition-all duration-500 ease-out"

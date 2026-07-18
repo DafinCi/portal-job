@@ -1,38 +1,26 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import {
-  Bell,
-  Briefcase,
-  Sparkles,
-} from "lucide-react";
+import { Bell, Briefcase, Sparkles } from "lucide-react";
 
 export default function NotificationButton() {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
-  
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if (
-          dropdownRef.current &&
-          !dropdownRef.current.contains(event.target)
-        ) {
-          setOpen(false);
-        }
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false);
       }
-  
-      document.addEventListener("mousedown", handleClickOutside);
-  
-      return () =>
-        document.removeEventListener(
-          "mousedown",
-          handleClickOutside
-        );
-    }, []);
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="relative" ref={dropdownRef}>
-
       <button
         onClick={() => setOpen(!open)}
         className="
@@ -68,51 +56,35 @@ export default function NotificationButton() {
             rounded-sm
             border
             border-border
-            bg-card
+            bg-card/50
             shadow-2xl
           "
         >
-
           <div className="border-b border-border p-4">
-
-            <h3 className="font-semibold">
-              Notifications
-            </h3>
-
+            <h3 className="font-semibold">Notifications</h3>
           </div>
 
           <div className="space-y-2 p-3">
-
             <div className="flex gap-3 rounded-sm p-3 hover:bg-sidebar-accent">
-
-              <Briefcase className="text-primary"/>
+              <Briefcase className="text-primary" />
 
               <div>
-                <p className="font-medium">
-                  New Job Available
-                </p>
+                <p className="font-medium">New Job Available</p>
                 <p className="text-sm text-muted-foreground">
                   Frontend Developer
                 </p>
               </div>
-
             </div>
 
             <div className="flex gap-3 rounded-sm p-3 hover:bg-sidebar-accent">
-
-              <Sparkles
-                className="text-yellow-400"
-              />
+              <Sparkles className="text-yellow-400" />
 
               <div>
-                <p className="font-medium">
-                  AI Match Updated
-                </p>
+                <p className="font-medium">AI Match Updated</p>
                 <p className="text-sm text-muted-foreground">
                   92% compatibility found
                 </p>
               </div>
-
             </div>
           </div>
         </div>

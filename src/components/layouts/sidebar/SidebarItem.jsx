@@ -48,7 +48,7 @@ export default function SidebarItem({ item, collapsed }) {
 
       {/* Hover Tooltip on Collapse */}
       {collapsed && (
-        <div className="absolute left-14 scale-0 rounded-md border border-border bg-card px-2 py-1 text-[11px] text-foreground transition-all duration-150 group-hover:scale-100 z-50 whitespace-nowrap shadow-md">
+        <div className="absolute left-14 scale-0 rounded-md border border-border bg-card/50 px-2 py-1 text-[11px] text-foreground transition-all duration-150 group-hover:scale-100 z-50 whitespace-nowrap shadow-md">
           {item.title}
         </div>
       )}

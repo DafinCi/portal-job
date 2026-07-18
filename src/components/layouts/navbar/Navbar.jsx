@@ -16,7 +16,7 @@ export default function Navbar() {
         <button
           onClick={toggleSidebar}
           aria-label="Toggle Sidebar"
-          className="p-1.5 rounded-[6px] border border-border bg-card hover:bg-accent text-muted-foreground hover:text-foreground transition-all duration-150"
+          className="p-1.5 rounded-[6px] border border-border bg-card/50 hover:bg-accent text-muted-foreground hover:text-foreground transition-all duration-150"
         >
           <Menu className="w-4 h-4" />
         </button>

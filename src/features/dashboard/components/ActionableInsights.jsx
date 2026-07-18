@@ -4,7 +4,7 @@ import { BrainCircuit, Compass, RefreshCw } from "lucide-react";
 
 export default function ActionableInsights({ insight, isLoading }) {
   return (
-    <div className="border border-border bg-card rounded-[6px] p-6 md:p-8 space-y-6">
+    <div className="border border-border bg-card/50 rounded-[6px] p-6 md:p-8 space-y-6">
       {/* Title block */}
       <div className="flex items-center gap-2 pb-4 border-b border-border/40">
         <BrainCircuit className="w-5 h-5 text-primary" />

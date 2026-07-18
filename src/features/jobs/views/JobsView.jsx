@@ -75,7 +75,7 @@ export default function JobsView() {
         <JobSummary stats={stats} />
 
         {/* Filter Toolbar */}
-        <div className="border border-border bg-card rounded-[6px] p-4 space-y-4">
+        <div className="border border-border bg-card/50 rounded-[6px] p-4 space-y-4">
           <div className="flex flex-col md:flex-row gap-3">
             {/* Search Input */}
             <div className="flex-1 relative">
@@ -115,7 +115,7 @@ export default function JobsView() {
             <select
               value={selectedExperience}
               onChange={(e) => setSelectedExperience(e.target.value)}
-              className="bg-card border border-border rounded-[6px] px-3 py-1.5 text-[13px] focus:outline-none focus:border-primary cursor-pointer"
+              className="bg-card/50 border border-border rounded-[6px] px-3 py-1.5 text-[13px] focus:outline-none focus:border-primary cursor-pointer"
             >
               <option value="all">All Experience Levels</option>
               <option value="junior">Junior Level</option>
@@ -127,7 +127,7 @@ export default function JobsView() {
             <select
               value={selectedLocation}
               onChange={(e) => setSelectedLocation(e.target.value)}
-              className="bg-card border border-border rounded-[6px] px-3 py-1.5 text-[13px] focus:outline-none focus:border-primary cursor-pointer capitalize"
+              className="bg-card/50 border border-border rounded-[6px] px-3 py-1.5 text-[13px] focus:outline-none focus:border-primary cursor-pointer capitalize"
             >
               {uniqueLocations.map((loc) => (
                 <option key={loc} value={loc}>
@@ -149,7 +149,7 @@ export default function JobsView() {
               />
             ))
           ) : (
-            <div className="border border-border bg-card rounded-[6px] p-12 text-center space-y-3">
+            <div className="border border-border bg-card/50 rounded-[6px] p-12 text-center space-y-3">
               <p className="text-[16px] font-semibold text-foreground">
                 No matches found
               </p>
@@ -172,7 +172,7 @@ export default function JobsView() {
           />
 
           {/* Drawer Panel */}
-          <div className="fixed inset-y-0 right-0 w-full max-w-lg bg-card border-l border-border z-50 p-6 shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+          <div className="fixed inset-y-0 right-0 w-full max-w-lg bg-card/50 border-l border-border z-50 p-6 shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
             {/* Drawer Header */}
             <div className="flex items-center justify-between border-b border-border pb-4">
               <div className="flex items-center gap-2 text-primary font-medium text-[14px]">
@@ -296,7 +296,7 @@ export default function JobsView() {
               </button>
               <button
                 onClick={() => setSelectedJob(null)}
-                className="px-4 py-2.5 border border-border bg-card rounded-[6px] text-[14px] font-medium text-foreground hover:bg-secondary transition-colors duration-150"
+                className="px-4 py-2.5 border border-border bg-card/50 rounded-[6px] text-[14px] font-medium text-foreground hover:bg-secondary transition-colors duration-150"
               >
                 Close
               </button>

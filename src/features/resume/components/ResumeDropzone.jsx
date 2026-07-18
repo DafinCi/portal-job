@@ -79,7 +79,7 @@ export default function ResumeDropzone({ onFileUpload, disabled = false }) {
           ${
             isDragging
               ? "border-primary bg-primary/5"
-              : "border-border bg-card hover:bg-accent/50 hover:border-muted-foreground/50"
+              : "border-border bg-card/50 hover:bg-accent/50 hover:border-muted-foreground/50"
           }
         `}
       >

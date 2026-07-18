@@ -10,7 +10,7 @@ export default function SkillSection({ skills }) {
       <h3 className="text-[20px] font-semibold font-heading text-foreground">
         Core Competencies
       </h3>
-      <div className="border border-border bg-card rounded-[6px] p-6">
+      <div className="border border-border bg-card/50 rounded-[6px] p-6">
         <div className="flex flex-wrap gap-2">
           {skills.map((skill, index) => (
             <span

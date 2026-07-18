@@ -57,7 +57,7 @@ export default function UserMenu() {
       {/* Dropdown Box Shell: No Shadow, Strict Borders */}
       <DropdownMenuContent
         align="end"
-        className="w-48 mt-2 rounded-[6px] border border-border bg-card p-1 shadow-none animate-in fade-in slide-in-from-top-1 duration-100 z-50"
+        className="w-48 mt-2 rounded-[6px] border border-border bg-card/50 p-1 shadow-none animate-in fade-in slide-in-from-top-1 duration-100 z-50"
       >
         <DropdownMenuLabel className="px-3 py-2 text-[11px] font-sans font-normal text-muted-foreground truncate">
           {user.email}

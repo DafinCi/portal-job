@@ -16,7 +16,7 @@ export default function InsightAndStrength({ strengths, weaknesses }) {
           <h3 className="text-[20px] font-semibold font-heading text-foreground">
             Strengths
           </h3>
-          <div className="border border-border bg-card rounded-[6px] p-6 h-full">
+          <div className="border border-border bg-card/50 rounded-[6px] p-6 h-full">
             <ul className="space-y-4">
               {strengths.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
@@ -38,7 +38,7 @@ export default function InsightAndStrength({ strengths, weaknesses }) {
           <h3 className="text-[20px] font-semibold font-heading text-foreground">
             Improvement Areas
           </h3>
-          <div className="border border-border bg-card rounded-[6px] p-6 h-full">
+          <div className="border border-border bg-card/50 rounded-[6px] p-6 h-full">
             <ul className="space-y-4">
               {weaknesses.map((item, index) => (
                 <li key={index} className="flex items-start gap-3">

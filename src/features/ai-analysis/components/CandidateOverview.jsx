@@ -11,7 +11,7 @@ export default function CandidateOverview({
   return (
     <div className="flex flex-col gap-6">
       {/* System Status */}
-      <div className="flex items-center gap-3 p-4 border border-border bg-card rounded-[6px]">
+      <div className="flex items-center gap-3 p-4 border border-border bg-card/50 rounded-[6px]">
         <div className="p-1.5 bg-primary/10 text-primary rounded-md">
           <BrainCircuit className="w-4 h-4" />
         </div>

@@ -6,7 +6,7 @@ export default function JobSummary({ stats }) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-      <div className="border border-border bg-card rounded-[6px] p-4 flex items-center gap-4">
+      <div className="border border-border bg-card/50 rounded-[6px] p-4 flex items-center gap-4">
         <div className="p-3 bg-secondary rounded-[6px] text-secondary-foreground border border-border">
           <Briefcase className="w-5 h-5" />
         </div>
@@ -23,7 +23,7 @@ export default function JobSummary({ stats }) {
         </div>
       </div>
 
-      <div className="border border-border bg-card rounded-[6px] p-4 flex items-center gap-4">
+      <div className="border border-border bg-card/50 rounded-[6px] p-4 flex items-center gap-4">
         <div className="p-3 bg-emerald-500/10 rounded-[6px] text-emerald-500 border border-emerald-500/10">
           <Award className="w-5 h-5" />
         </div>
@@ -37,7 +37,7 @@ export default function JobSummary({ stats }) {
         </div>
       </div>
 
-      <div className="border border-border bg-card rounded-[6px] p-4 flex items-center gap-4">
+      <div className="border border-border bg-card/50 rounded-[6px] p-4 flex items-center gap-4">
         <div className="p-3 bg-teal-500/10 rounded-[6px] text-teal-500 border border-teal-500/10">
           <TrendingUp className="w-5 h-5" />
         </div>

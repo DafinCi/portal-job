@@ -9,13 +9,8 @@ export default function CareerHero({
   cooldown,
 }) {
   return (
-    <div className="border border-border bg-card rounded-lg p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden transition-all duration-200">
+    <div className="border border-border bg-card/50 rounded-lg p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden transition-all duration-200">
       <div className="space-y-4 flex-1">
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-lg text-primary text-[14px] font-sans font-medium">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-          Verified Profile Analysis
-        </div>
-
         <div className="space-y-2">
           <h2 className="text-[24px] font-heading font-semibold text-foreground">
             Optimal Position:{" "}

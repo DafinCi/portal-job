@@ -20,7 +20,7 @@ const education = [
 
 export default function EducationSection() {
   return (
-    <section className="rounded-[6px] border border-sidebar-border bg-card p-8">
+    <section className="rounded-[6px] border border-sidebar-border bg-card/50 p-8">
       <div className="mb-8 flex items-center gap-3">
         <div className="rounded-[6px] bg-primary p-3 text-primary-foreground">
           <GraduationCap size={22} />

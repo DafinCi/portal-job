@@ -74,7 +74,7 @@ export default function ResumePageView() {
       {!isChecking && step === "success" && analysisResult && (
         <div className="space-y-6 animate-in fade-in duration-500">
           {/* Active Resume Context Ribbon */}
-          <div className="flex items-center justify-between p-4 border border-border bg-card rounded-[6px]">
+          <div className="flex items-center justify-between p-4 border border-border bg-card/50 rounded-[6px]">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-secondary/80 rounded-[6px] text-foreground border border-border">
                 <FileText className="w-4 h-4" />
@@ -104,7 +104,7 @@ export default function ResumePageView() {
           <div className="pt-4 flex justify-center">
             <button
               onClick={resetFlow}
-              className="flex items-center gap-2 px-4 py-2 border border-border bg-card hover:bg-secondary text-muted-foreground hover:text-foreground text-[13px] font-medium rounded-[6px] transition-colors duration-150"
+              className="flex items-center gap-2 px-4 py-2 border border-border bg-card/50 hover:bg-secondary text-muted-foreground hover:text-foreground text-[13px] font-medium rounded-[6px] transition-colors duration-150"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               Re-calibrate System Profile

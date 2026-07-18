@@ -27,7 +27,7 @@ export default function DashboardView() {
   // 1. Handling Global Critical Error (SaaS UI Treatment)
   if (error) {
     return (
-      <div className="w-full max-w-md mx-auto my-16 border border-border bg-card rounded-lg p-6 flex flex-col items-center text-center space-y-4 animate-in fade-in duration-300">
+      <div className="w-full max-w-md mx-auto my-16 border border-border bg-card/50 rounded-lg p-6 flex flex-col items-center text-center space-y-4 animate-in fade-in duration-300">
         <div className="p-2 bg-destructive/10 text-destructive rounded-md">
           <AlertTriangle className="w-5 h-5" />
         </div>

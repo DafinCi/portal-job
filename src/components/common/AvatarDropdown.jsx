@@ -49,7 +49,7 @@ export default function AvatarDropdown() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-3 w-56 rounded-sm border border-border bg-card p-2 shadow-2xl z-50">
+        <div className="absolute right-0 mt-3 w-56 rounded-sm border border-border bg-card/50 p-2 shadow-2xl z-50">
           <button className="flex w-full items-center gap-3 rounded-sm px-3 py-3 hover:bg-sidebar-accent">
             <User size={18} />
             Profile

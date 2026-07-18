@@ -22,7 +22,7 @@ export default function JobCard({ match, onSelect }) {
   } = match;
 
   return (
-    <div className="group border border-border bg-card rounded-[6px] p-5 transition-all duration-200 hover:border-muted-foreground/30 flex flex-col md:flex-row gap-5 items-start justify-between">
+    <div className="group border border-border bg-card/50 rounded-[6px] p-5 transition-all duration-200 hover:border-muted-foreground/30 flex flex-col md:flex-row gap-5 items-start justify-between">
       <div className="space-y-4 flex-1 w-full">
         <div className="flex gap-4 items-start">
           <div className="w-12 h-12 rounded-[6px] border border-border bg-secondary/50 flex items-center justify-center shrink-0 overflow-hidden relative">
@@ -97,7 +97,7 @@ export default function JobCard({ match, onSelect }) {
       {/* Primary CTA */}
       <button
         onClick={() => onSelect(match)}
-        className="w-full md:w-auto mt-2 md:mt-0 flex items-center justify-center gap-1 px-4 py-2 border border-border bg-card group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground rounded-[6px] text-[13px] font-medium transition-all duration-200 whitespace-nowrap self-stretch md:self-center"
+        className="w-full md:w-auto mt-2 md:mt-0 flex items-center justify-center gap-1 px-4 py-2 border border-border bg-card/50 group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground rounded-[6px] text-[13px] font-medium transition-all duration-200 whitespace-nowrap self-stretch md:self-center"
       >
         View Match Detail
         <ChevronRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />

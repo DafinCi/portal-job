@@ -22,7 +22,7 @@ export default function DashboardOnboarding({ onUploadSuccess }) {
   // Render Checklist di tempat yang sama persis!
   if (step !== "idle" && step !== "error" && step !== "success") {
     return (
-      <div className="w-full border border-border bg-card rounded-lg p-12 flex flex-col items-center justify-center animate-in zoom-in-95 duration-500">
+      <div className="w-full border border-border bg-card/50 rounded-lg p-12 flex flex-col items-center justify-center animate-in zoom-in-95 duration-500">
         <AIProcessingChecklist currentStep={step} />
         <p className="mt-8 text-[14px] text-muted-foreground font-sans animate-pulse">
           Mohon jangan tutup halaman ini, AI sedang merangkai profil Anda...
@@ -33,7 +33,7 @@ export default function DashboardOnboarding({ onUploadSuccess }) {
 
   // STATE: Awal (Idle) atau jika terjadi Error (Dropzone siap menerima file)
   return (
-    <div className="w-full border border-border bg-card rounded-lg p-8 md:p-12 transition-all duration-300">
+    <div className="w-full border border-border bg-card/50 rounded-lg p-8 md:p-12 transition-all duration-300">
       <div className="max-w-3xl mx-auto space-y-10">
         {/* Feature Highlights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-border/50">

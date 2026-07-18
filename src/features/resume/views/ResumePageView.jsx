@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { FileText, Plus, RefreshCw } from "lucide-react";
 import { useResumeUpload } from "../hooks/useResumeUpload";
 import ResumeDropzone from "../components/ResumeDropzone";
-import AIProcessingChecklist from "../../ai-analysis/components/AIProcessingChecklist";
 import ResumeAnalysisResult from "../../ai-analysis/components/ResumeAnalysisResult";
 import ResumeSkeleton from "../skeletons/ResumeSkeleton";
 
@@ -33,6 +32,10 @@ export default function ResumePageView() {
     }).format(new Date(isoString));
   };
 
+  // Menentukan apakah sistem sedang memproses AI pipeline
+  const isProcessing =
+    step !== "idle" && step !== "success" && step !== "error";
+
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6 pb-16">
       {/* SECTION 1: Page Header */}
@@ -46,29 +49,23 @@ export default function ResumePageView() {
         </p>
       </header>
 
-      {/* LOADING STATE */}
+      {/* LOADING STATE (INITIAL CHECK) */}
       {isChecking && (
         <div className="py-4">
           <ResumeSkeleton />
         </div>
       )}
 
-      {/* STATE: IDLE */}
-      {!isChecking && step === "idle" && (
+      {/* STATE: IDLE ATAU PROCESSING (Menyatu dalam Dropzone) */}
+      {!isChecking && (step === "idle" || isProcessing) && (
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-300">
-          <ResumeDropzone onFileUpload={processResume} />
+          <ResumeDropzone
+            onFileUpload={processResume}
+            currentStep={step}
+            disabled={isProcessing}
+          />
         </div>
       )}
-
-      {/* STATE: PROCESSING */}
-      {!isChecking &&
-        step !== "idle" &&
-        step !== "success" &&
-        step !== "error" && (
-          <div className="py-4 animate-in fade-in duration-300">
-            <AIProcessingChecklist currentStep={step} />
-          </div>
-        )}
 
       {/* STATE: SUCCESS */}
       {!isChecking && step === "success" && analysisResult && (

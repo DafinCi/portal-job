@@ -3,17 +3,46 @@
 import React, { useState, useRef } from "react";
 import { UploadCloud, FileText, AlertCircle } from "lucide-react";
 
-export default function ResumeDropzone({ onFileUpload, disabled = false }) {
+export default function ResumeDropzone({
+  onFileUpload,
+  currentStep = "idle",
+  disabled = false,
+}) {
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState("");
   const fileInputRef = useRef(null);
 
   const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
 
+  const narrativeMeta = {
+    uploading: {
+      title: "Reading your resume...",
+      subtext: "Preparing data.",
+    },
+    extracting: {
+      title: "Understanding your experience...",
+      subtext: "Building your profile.",
+    },
+    analyzing: {
+      title: "Analyzing your skills...",
+      subtext: "Finding your strengths.",
+    },
+    matching: {
+      title: "Matching opportunities...",
+      subtext: "Comparing with available roles.",
+    },
+  };
+
+  const isProcessing =
+    currentStep !== "idle" &&
+    currentStep !== "success" &&
+    currentStep !== "error";
+  const activeNarrative = isProcessing ? narrativeMeta[currentStep] : null;
+
   const handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (disabled) return;
+    if (disabled || isProcessing) return;
     setIsDragging(true);
   };
 
@@ -25,7 +54,6 @@ export default function ResumeDropzone({ onFileUpload, disabled = false }) {
 
   const validateAndProcessFile = (file) => {
     setError("");
-
     if (!file) return;
 
     if (file.type !== "application/pdf") {
@@ -38,7 +66,6 @@ export default function ResumeDropzone({ onFileUpload, disabled = false }) {
       return;
     }
 
-    // Jika aman, kirim file ke parent/hook
     onFileUpload(file);
   };
 
@@ -46,8 +73,7 @@ export default function ResumeDropzone({ onFileUpload, disabled = false }) {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
-
-    if (disabled) return;
+    if (disabled || isProcessing) return;
 
     const files = e.dataTransfer.files;
     if (files && files.length > 0) {
@@ -60,7 +86,6 @@ export default function ResumeDropzone({ onFileUpload, disabled = false }) {
     if (files && files.length > 0) {
       validateAndProcessFile(files[0]);
     }
-    // Reset input agar user bisa pilih file yang sama lagi jika error
     e.target.value = "";
   };
 
@@ -70,16 +95,20 @@ export default function ResumeDropzone({ onFileUpload, disabled = false }) {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={() => !disabled && fileInputRef.current?.click()}
+        onClick={() =>
+          !disabled && !isProcessing && fileInputRef.current?.click()
+        }
         className={`
-          relative flex flex-col items-center justify-center w-full p-10
-          border border-dashed rounded-[6px] cursor-pointer
-          transition-all duration-200 ease-in-out
-          ${disabled ? "opacity-50 cursor-not-allowed" : ""}
+          relative flex flex-col items-center justify-center w-full min-h-[240px] p-10
+          rounded-[6px] transition-all duration-300 ease-in-out
+          ${isProcessing ? "border border-border bg-card/15 cursor-wait" : "border border-dashed cursor-pointer"}
+          ${disabled && !isProcessing ? "opacity-50 cursor-not-allowed" : ""}
           ${
             isDragging
-              ? "border-primary bg-primary/5"
-              : "border-border bg-card/50 hover:bg-accent/50 hover:border-muted-foreground/50"
+              ? "border-primary bg-primary/5 shadow-inner"
+              : !isProcessing
+                ? "border-border bg-card/50 hover:bg-accent/40 hover:border-muted-foreground/40"
+                : ""
           }
         `}
       >
@@ -89,34 +118,69 @@ export default function ResumeDropzone({ onFileUpload, disabled = false }) {
           accept=".pdf, application/pdf"
           className="hidden"
           onChange={handleFileInputChange}
-          disabled={disabled}
+          disabled={disabled || isProcessing}
         />
 
-        {/* Ikon Transisi */}
-        <div
-          className={`p-3 rounded-[6px] mb-4 transition-colors duration-200 ease-in-out ${
-            isDragging
-              ? "bg-primary/20 text-primary"
-              : "bg-muted text-muted-foreground"
-          }`}
-        >
-          {isDragging ? (
-            <FileText className="w-6 h-6" />
-          ) : (
-            <UploadCloud className="w-6 h-6" />
-          )}
-        </div>
+        {/* CONDITION 1: PREMIUM INTELLIGENCE NARRATIVE STATE */}
+        {isProcessing && activeNarrative ? (
+          /* 🔥 KEY INJECTION: Menggunakan currentStep sebagai key agar seluruh blok ini 
+             merestart animasi fade & slide up secara organic setiap kali kalimat berganti */
+          <div
+            key={currentStep}
+            className="w-full max-w-lg mx-auto flex flex-col items-center text-center space-y-5 px-4 animate-in fade-in slide-in-from-bottom-3 duration-500 ease-out"
+          >
+            <span className="text-[12px] font-sans font-medium text-muted-foreground/60 tracking-widest uppercase">
+              AI Career Intelligence
+            </span>
 
-        {/* Tipografi Sesuai Hierarki */}
-        <h3 className="text-[16px] font-medium text-foreground mb-1">
-          Drag and drop or <span className="text-primary">Browse</span>
-        </h3>
-        <p className="text-[14px] text-muted-foreground">
-          File PDF only • Maximum 5 MB
-        </p>
+            {/* Narasi Utama Perubahan Posisi Karier */}
+            <h3 className="text-[17px] font-medium font-sans text-foreground tracking-tight max-w-md">
+              {activeNarrative.title}
+            </h3>
+
+            {/* Subtext Penjelas Bisnis */}
+            <p className="text-[14px] text-muted-foreground/80 font-sans leading-relaxed max-w-xs">
+              {activeNarrative.subtext}
+            </p>
+
+            {/* Modern Breathing Dots dengan Custom High Bounce */}
+            <div className="flex items-center justify-center gap-1.5 pt-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary/80 animate-high-bounce [animation-delay:1s]"></span>
+              <span className="h-1.5 w-1.5 rounded-full bg-primary/80 animate-high-bounce [animation-delay:0.5s]"></span>
+              <span className="h-1.5 w-1.5 rounded-full bg-primary/80 animate-high-bounce"></span>
+            </div>
+          </div>
+        ) : (
+          /* CONDITION 2: STANDARD UPLOAD DROPZONE VIEW */
+          <>
+            <div
+              className={`p-3 rounded-[6px] mb-4 transition-all duration-200 ease-in-out ${
+                isDragging
+                  ? "bg-primary/20 text-primary scale-110"
+                  : "bg-muted text-muted-foreground"
+              }`}
+            >
+              {isDragging ? (
+                <FileText className="w-6 h-6" />
+              ) : (
+                <UploadCloud className="w-6 h-6" />
+              )}
+            </div>
+
+            <h3 className="text-[16px] font-medium text-foreground mb-1">
+              Drag and drop or{" "}
+              <span className="text-primary font-medium hover:underline">
+                Browse
+              </span>
+            </h3>
+            <p className="text-[14px] text-muted-foreground">
+              File PDF only • Maximum 5 MB
+            </p>
+          </>
+        )}
       </div>
 
-      {/* Error State (Muncul dengan animasi smooth) */}
+      {/* Error Message Layer */}
       {error && (
         <div className="flex items-center gap-2 mt-3 text-[14px] text-destructive animate-in fade-in slide-in-from-top-2 duration-200">
           <AlertCircle className="w-4 h-4" />

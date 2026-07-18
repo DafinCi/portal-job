@@ -5,11 +5,9 @@ import { MenuItems } from "@/constants/menu";
 import SidebarItem from "./SidebarItem";
 
 export default function SidebarNavigation({ collapsed }) {
-  // 1. Buat state lokal yang mengambil data inisial dari konstanta MenuItems
   const [dynamicMenu, setDynamicMenu] = useState(MenuItems);
 
   useEffect(() => {
-    // 2. Fetch ringan hanya untuk mengambil angka metrik
     async function fetchBadgeData() {
       try {
         const response = await fetch("/api/dashboard/metrics");
@@ -17,7 +15,6 @@ export default function SidebarNavigation({ collapsed }) {
 
         const data = await response.json();
 
-        // 3. Jika resume sudah selesai dianalisis, ekstrak totalMatches
         if (
           data.hasResume &&
           data.resumeStatus === "completed" &&
@@ -25,7 +22,6 @@ export default function SidebarNavigation({ collapsed }) {
         ) {
           const { totalMatches } = data.metrics;
 
-          // 4. Update state menu: cari item "/jobs" dan suntikkan angka badge
           setDynamicMenu((prevMenu) =>
             prevMenu.map((item) =>
               item.href === "/jobs" ? { ...item, badge: totalMatches } : item,

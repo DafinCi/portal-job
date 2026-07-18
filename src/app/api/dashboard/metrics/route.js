@@ -97,14 +97,18 @@ export async function GET() {
     const uniqueMissingSkills = [...new Set(allMissingSkills)];
     const missingSkillsCount = uniqueMissingSkills.length;
 
-    // 🔥 PERBAIKAN 2: Perluas pencarian key JSON dan gunakan fallback yang NETRAL
+    // 🔥 PERBAIKAN 2: Sesuaikan dengan struktur nested JSON Supabase (career & candidate)
     const candidateProfile = latestAnalysis.candidate_data || {};
+
     const topRole =
+      // 1. Coba ambil rekomendasi posisi optimal pertama dari AI
+      candidateProfile.career?.recommended_roles?.[0] ||
+      // 2. Jika tidak ada, ambil title profil utama kandidat
+      candidateProfile.candidate?.title ||
+      // 3. Jaga-jaga jika ada struktur data lama yang flat
       candidateProfile.title ||
       candidateProfile.role ||
-      candidateProfile.profession ||
-      candidateProfile.desired_role ||
-      candidateProfile.headline ||
+      // 4. Fallback terakhir jika semua kosong
       "Professional";
 
     const scores = jobMatches.map((m) => m.match_score || 0);

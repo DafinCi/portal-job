@@ -258,7 +258,7 @@ The paragraph should read like it was written by an experienced career mentor, n
     if (primaryMissingSkill) {
       quickActions.push({
         id: "learn_skill",
-        label: `Cari Lowongan ${primaryMissingSkill}`,
+        label: `Cari Kursus ${primaryMissingSkill}`,
         type: "action",
         priority: "high",
         path: `/jobs?search=${encodeURIComponent(primaryMissingSkill)}`,

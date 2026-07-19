@@ -1,36 +1,178 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+```text
+ ██████╗ ██████╗ ███████╗███╗   ██╗
+██╔═══██╗██╔══██╗██╔════╝████╗  ██║
+██║   ██║██████╔╝█████╗  ██╔██╗ ██║
+██║   ██║██╔═══╝ ██╔══╝  ██║╚██╗██║
+╚██████╔╝██║     ███████╗██║ ╚████║
+ ╚═════╝ ╚═╝     ╚══════╝╚═╝  ╚═══╝
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   ███████╗ ██████╗ ██╗   ██╗██████╗  ██████╗███████╗
+   ██╔════╝██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔════╝
+   ███████╗██║   ██║██║   ██║██████╔╝██║     █████╗
+   ╚════██║██║   ██║██║   ██║██╔══██╗██║     ██╔══╝
+   ███████║╚██████╔╝╚██████╔╝██║  ██║╚██████╗███████╗
+   ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Finder
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+> **AI Career Intelligence Workspace**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Finder is an open-source platform that helps people understand their professional profile before applying for jobs.
 
-## Learn More
+Instead of becoming another job board, Finder analyzes a resume using AI, extracts structured career intelligence, identifies strengths and skill gaps, and recommends the most relevant career opportunities.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Philosophy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Traditional job platforms ask:
 
-## Deploy on Vercel
+> _"What job are you looking for?"_
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Finder asks:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> _"Who are you as a professional?"_
+
+Everything starts with understanding the candidate.
+
+---
+
+## Core Experience
+
+```
+Upload Resume
+        │
+        ▼
+AI Processing
+        │
+        ▼
+Career Intelligence
+        │
+        ▼
+Professional Insights
+        │
+        ▼
+Recommended Jobs
+        │
+        ▼
+Career Growth
+```
+
+---
+
+## Vision
+
+Finder is designed as an **AI Career Intelligence Workspace**.
+
+Every uploaded resume creates a dedicated workspace where AI can:
+
+- analyze professional experience
+- identify strengths
+- detect missing skills
+- recommend career paths
+- match relevant job opportunities
+- guide continuous career growth
+
+The goal is to become an AI companion for career development rather than another job portal.
+
+---
+
+## Features
+
+- AI Resume Analysis
+- Professional Career Summary
+- Candidate Intelligence Profile
+- Skill Gap Detection
+- Career Position Evaluation
+- Personalized Job Matching
+- Career Recommendations
+- Resume Workspace
+- Resume History
+- Modern SaaS Dashboard
+
+Upcoming
+
+- Learning Recommendations
+- YouTube Learning Suggestions
+- Career Roadmap
+- Resume Version Comparison
+- AI Career Assistant
+- Weekly Career Insights
+
+---
+
+## Tech Stack
+
+### Frontend
+
+- Next.js
+- React
+- Tailwind CSS
+- shadcn/ui
+
+### Backend
+
+- Next.js Route Handlers
+- Supabase
+- PostgreSQL
+
+### AI
+
+- Groq
+- OpenAI OSS Models
+- Gemini
+- PDF Text Extraction
+
+---
+
+## Design Principles
+
+- AI First
+- Workspace First
+- Dark Mode Only
+- Minimal & Calm Interface
+- Professional SaaS Experience
+- Single Primary Action
+- Career Intelligence before Job Recommendation
+
+---
+
+## Current Status
+
+🚧 Active Development
+
+Finder is currently being rebuilt after its original hackathon version was cancelled.
+
+The project is now evolving into a long-term open-source project with a stronger product vision and architecture.
+
+---
+
+## Roadmap
+
+- [x] Resume Upload
+- [x] Resume Parsing
+- [x] AI Candidate Extraction
+- [x] Job Matching Engine
+- [ ] Workspace Architecture
+- [ ] Career Intelligence Dashboard
+- [ ] Learning Recommendation Engine
+- [ ] Resume Version History
+- [ ] AI Career Assistant
+- [ ] Public API
+
+---
+
+## Open Source
+
+Finder is built in public.
+
+Contributions, ideas, discussions, and feedback are always welcome.
+
+The goal is to create one of the best open-source AI career platforms for developers, students, and professionals.
+
+---
+
+## License
+
+MIT License
